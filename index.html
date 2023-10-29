@@ -27,8 +27,8 @@
         let score = 0
         let x = canvas.width / 2
         let y = canvas.height - 30
-        let dx = 2;
-        let dy = -2;
+        let dx = 4;
+        let dy = -4;
         const ballRadius = 10
 
         const paddleHeight = 10
@@ -96,7 +96,6 @@
                 } else {
                     alert('GAME OVER')
                     document.location.reload()
-                    clearInterval(interval)
                 }
             }
 
@@ -109,6 +108,8 @@
 
             x += dx
             y += dy
+
+            requestAnimationFrame(draw)
         }
 
         const drawScore = () => {
@@ -149,7 +150,6 @@
                             if (score == brickRowCount * brickColumnCount) {
                                 alert('You win!')
                                 document.location.reload()
-                                clearInterval(interval)
                             }
                         }
                     }
@@ -173,7 +173,8 @@
             ctx.closePath()
         }
 
-        var interval = setInterval(draw, 10)
+        // the main game loop
+        draw()
     </script>
 </body>
 
